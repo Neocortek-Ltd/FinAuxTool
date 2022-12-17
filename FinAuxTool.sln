@@ -1,8 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinAuxTool.Core", "Src\FinAuxTool.Core\FinAuxTool.Core.csproj", "{3058816E-1ABE-4C2A-B7DC-12FEB4DF41E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinAuxTool.Console", "Src\FinAuxTool.Console\FinAuxTool.Console.csproj", "{8FF05064-3582-47CD-BE34-F2D6D0E91AB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinAuxToolTests", "Src\FinAuxToolTests\FinAuxToolTests.csproj", "{B77A24E1-DA6E-4332-ACE2-140377C3F191}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3058816E-1ABE-4C2A-B7DC-12FEB4DF41E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3058816E-1ABE-4C2A-B7DC-12FEB4DF41E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3058816E-1ABE-4C2A-B7DC-12FEB4DF41E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3058816E-1ABE-4C2A-B7DC-12FEB4DF41E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF05064-3582-47CD-BE34-F2D6D0E91AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF05064-3582-47CD-BE34-F2D6D0E91AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF05064-3582-47CD-BE34-F2D6D0E91AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF05064-3582-47CD-BE34-F2D6D0E91AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B77A24E1-DA6E-4332-ACE2-140377C3F191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B77A24E1-DA6E-4332-ACE2-140377C3F191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B77A24E1-DA6E-4332-ACE2-140377C3F191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B77A24E1-DA6E-4332-ACE2-140377C3F191}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
