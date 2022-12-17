@@ -11,7 +11,7 @@ public class Month : IPeriod
     internal Month(Quarter parentQuarter, short aMonth)
     {
         Quarter = parentQuarter;
-        var y = Quarter.CalYear.PerVal;
+        var y = Quarter.FinYearUk.PerVal;
         
         PerVal = aMonth;
         Label = y.ToString() + "-" + $"{aMonth:D2}";

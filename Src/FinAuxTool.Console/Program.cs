@@ -8,7 +8,7 @@ public static class Program
     {
         // Console.WriteLine("Enter yyyy-Qx to create folder structure:");
         // var yQ = Console.ReadLine();
-        CalYear cY = new CalYear(1822);
+        FinYearUK cY = new FinYearUK(2022);
         Console.ReadLine();
 
     }

@@ -13,7 +13,7 @@ public abstract class Year
 
     private void SetPerVal(short aYear)
     {
-        Trace.Assert(aYear is >= 1900 and <= 2100);
+        Trace.Assert(aYear is >= 2000 and <= 2100);
         PerVal = aYear;
     }
     

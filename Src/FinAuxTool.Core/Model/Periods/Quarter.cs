@@ -9,20 +9,20 @@ public class Quarter : IPeriod
     public string Label { get; }
     public DateOnly BegDate { get; }
     public DateOnly EndDate { get; }
-    internal CalYear CalYear { get; }
-    public FinYear FinYear { get; set; }
+    public FinYearUK FinYearUk { get; }
+    public CalYear CalYear { get; set; }
     public Month[] Months { get; }
 
-    internal Quarter(CalYear aCalYear, short aQuarter)
+    internal Quarter(FinYearUK aFinYearUk, short aQuarter)
     {
         PerVal = aQuarter;
-        Label = aCalYear.PerVal.ToString() + "-Q" + aQuarter.ToString();
-        CalYear = aCalYear;
+        Label = aFinYearUk.PerVal.ToString() + "-Q" + aQuarter.ToString();
+        FinYearUk = aFinYearUk;
 
         var begMonth = 1 + (PerVal -1) * 3;
         var endMonth = begMonth + 2;
-        BegDate = new DateOnly(CalYear.PerVal, begMonth,  1);
-        EndDate = new DateOnly(CalYear.PerVal, endMonth, DateTime.DaysInMonth(CalYear.PerVal, endMonth));
+        BegDate = new DateOnly(FinYearUk.PerVal, begMonth,  1);
+        EndDate = new DateOnly(FinYearUk.PerVal, endMonth, DateTime.DaysInMonth(FinYearUk.PerVal, endMonth));
 
         var firstMonthOfQuarter = 1 + (PerVal - 1) * MonthsInQuarter;
 
