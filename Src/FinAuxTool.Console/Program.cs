@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-public class Program
+internal static class Program
 {
     public static void Main(string[] args)
     {
@@ -26,14 +26,15 @@ public class Program
     
     private static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services, IConfigurationRoot configuration)
     {
-        // Adding all services used for dependency injection below. 
-        
-        services.AddSingleton<IFinYearUK, FinYearUK>(sp =>
+        services.AddSingleton<IAllFinYears, AllFinYears>(sp =>
         {
-            var finYearArg = configuration.GetValue<short>("finYearArg");
-            return new FinYearUK(finYearArg); 
+            // The GetValue method seems to not be able to read an array of any type from a JSON file! Hence the detour via a comma-separated string + Split.
+            var finYearsArgRaw = configuration.GetValue<string>("finYearsArg") ?? throw new NullReferenceException(); 
+            var finYearsArg = finYearsArgRaw.Split(',').Select(short.Parse).ToArray(); // Select(short.Parse) here is a so-called 'method group' and equivalent to 'Select(s => short.Parse(s))'. 
+            
+            return new AllFinYears(finYearsArg); 
         });
-        
+
         services.AddScoped<App>();
     }
 }

@@ -5,15 +5,16 @@ using System;
 
 public class App
 {
-    private readonly IFinYearUK _finYearUK;
+    private readonly IAllFinYears _allFinYears;
 
-    public App(IFinYearUK aFinYearUK)
+    public App(IAllFinYears aAllFinYears)
     {
-        _finYearUK = aFinYearUK;
+        _allFinYears = aAllFinYears;
     }
 
-    public void Run()
+    internal void Run()
     {
-        Console.WriteLine(_finYearUK.PerVal.ToString());
+        Console.WriteLine(_allFinYears.FinYears[0].PerVal.ToString());
+        Console.WriteLine(_allFinYears.FinYears[1].PerVal.ToString());
     }
 }
