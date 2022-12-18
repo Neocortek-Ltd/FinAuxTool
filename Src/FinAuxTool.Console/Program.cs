@@ -26,7 +26,7 @@ internal static class Program
     
     private static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services, IConfigurationRoot configuration)
     {
-        services.AddSingleton<IAllFinYears, AllFinYears>(sp =>
+        services.AddSingleton<IAllFinYears, AllFinYears>(_ =>
         {
             // The GetValue method seems to not be able to read an array of any type from a JSON file! Hence the detour via a comma-separated string + Split.
             var finYearsArgRaw = configuration.GetValue<string>("finYearsArg") ?? throw new NullReferenceException(); 

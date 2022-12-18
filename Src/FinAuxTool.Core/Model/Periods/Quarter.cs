@@ -10,7 +10,6 @@ public class Quarter : IPeriod
     public DateOnly BegDate { get; }
     public DateOnly EndDate { get; }
     public FinYearUK FinYearUk { get; }
-    public CalYear CalYear { get; set; }
     public Month[] Months { get; }
 
     internal Quarter(FinYearUK aFinYearUk, short aQuarter)
