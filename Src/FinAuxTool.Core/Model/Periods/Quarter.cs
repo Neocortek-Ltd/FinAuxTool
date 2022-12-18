@@ -1,30 +1,33 @@
+using System.Diagnostics;
 using System.Globalization;
 
 namespace FinAuxTool.Core.Model;
 
-public class Quarter : IPeriod
+public class Quarter
 {
     private const byte MonthsInQuarter = 3;
-    public short PerVal { get; }
-    public string Label { get; }
-    public DateOnly BegDate { get; }
-    public DateOnly EndDate { get; }
+    
+    public short QuarterInCalYear { get; }
+    public Period Period { get; }
     public FinYearUK FinYearUk { get; }
     public Month[] Months { get; }
 
     internal Quarter(FinYearUK aFinYearUk, short aQuarter)
     {
-        PerVal = aQuarter;
-        Label = aFinYearUk.PerVal.ToString() + "-Q" + aQuarter.ToString();
+        Trace.Assert(aQuarter is >= 1 and <= 4);
+        QuarterInCalYear = aQuarter;
         FinYearUk = aFinYearUk;
-
-        var begMonth = 1 + (PerVal -1) * 3;
+        
+        var begMonth = 1 + (QuarterInCalYear -1) * 3;
         var endMonth = begMonth + 2;
-        BegDate = new DateOnly(FinYearUk.PerVal, begMonth,  1);
-        EndDate = new DateOnly(FinYearUk.PerVal, endMonth, DateTime.DaysInMonth(FinYearUk.PerVal, endMonth));
-
-        var firstMonthOfQuarter = 1 + (PerVal - 1) * MonthsInQuarter;
-
+        Period = new Period
+        {
+            Label = FinYearUk.StartYear.ToString() + "-Q" + aQuarter.ToString(),
+            BegDate = new DateOnly(FinYearUk.StartYear, begMonth,  1),
+            EndDate = new DateOnly(FinYearUk.StartYear, endMonth, DateTime.DaysInMonth(FinYearUk.StartYear, endMonth)),
+        };
+        
+        var firstMonthOfQuarter = 1 + (QuarterInCalYear - 1) * MonthsInQuarter;
         Months = Enumerable.Range(0, MonthsInQuarter)
             .Select(i => new Month(this, (short)(firstMonthOfQuarter + i)))
             .ToArray();

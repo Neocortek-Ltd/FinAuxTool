@@ -1,22 +1,25 @@
+using System.Diagnostics;
+
 namespace FinAuxTool.Core.Model;
 
-public class Month : IPeriod
+public class Month
 {
-    public short PerVal { get; }
-    public string Label { get; }
-    public DateOnly BegDate { get; }
-    public DateOnly EndDate { get; }
+    public short MonthInCalYear { get; }
+    public Period Period { get; }
     public Quarter Quarter { get; }
 
     internal Month(Quarter parentQuarter, short aMonth)
     {
+        Trace.Assert(aMonth is >= 1 and <= 12);
+        MonthInCalYear = aMonth;
         Quarter = parentQuarter;
-        var y = Quarter.FinYearUk.PerVal;
-        
-        PerVal = aMonth;
-        Label = y.ToString() + "-" + $"{aMonth:D2}";
-        
-        BegDate = new DateOnly(y, PerVal, 1);
-        EndDate = new DateOnly(y, PerVal, DateTime.DaysInMonth(y, PerVal));
+        var y = Quarter.FinYearUk.StartYear;
+
+        Period = new Period
+        {
+            Label = y.ToString() + "-" + $"{aMonth:D2}",
+            BegDate = new DateOnly(y, MonthInCalYear, 1),
+            EndDate = new DateOnly(y, MonthInCalYear, DateTime.DaysInMonth(y, MonthInCalYear)),
+        };
     }
 }

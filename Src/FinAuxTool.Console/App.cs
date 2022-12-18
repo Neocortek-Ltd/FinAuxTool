@@ -1,25 +1,27 @@
+using FinAuxTool.Core.Model;
+using FinAuxTool.Core.Services;
+
 namespace FinAuxTool.Console;
 
-using Core.Model;
-using Core.Services;
 using System;
 
 public class App
 {
-    private readonly IAllFinYears _allFinYears;
+    private readonly AllFinYears _allFinYears;
+    private readonly TestUsingDi _testUsingDi;
 
-    public App(IAllFinYears aAllFinYears)
+    public App(AllFinYears aAllFinYears, TestUsingDi aTestUsingDi)
     {
         _allFinYears = aAllFinYears;
+        _testUsingDi = aTestUsingDi;
     }
 
     internal void Run()
     {
-        Console.WriteLine(_allFinYears.FinYears[0].PerVal.ToString());
-        Console.WriteLine(_allFinYears.FinYears[1].PerVal.ToString());
-
-        TestUsingDi t = new TestUsingDi(_allFinYears);
-        t.DoSomething();
+        // This block is just test code for now! 
+        Console.WriteLine(_allFinYears.FinYears[0].StartYear.ToString());
+        Console.WriteLine(_allFinYears.FinYears[1].StartYear.ToString());
+        _testUsingDi.DoSomething();
     }
 }
 

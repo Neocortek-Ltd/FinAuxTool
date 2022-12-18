@@ -1,6 +1,6 @@
 namespace FinAuxTool.Core.Model;
 
-public class AllFinYears : IAllFinYears
+public class AllFinYears
 {
     public FinYearUK[] FinYears { get; }
 

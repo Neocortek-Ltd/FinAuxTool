@@ -1,8 +1,10 @@
-﻿namespace FinAuxTool.Console;
-using Core.Model;
+﻿using FinAuxTool.Core.Model;
+using FinAuxTool.Core.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+
+namespace FinAuxTool.Console;
 
 internal static class Program
 {
@@ -26,14 +28,16 @@ internal static class Program
     
     private static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services, IConfigurationRoot configuration)
     {
-        services.AddSingleton<IAllFinYears, AllFinYears>(_ =>
+        services.AddSingleton<AllFinYears>(_ =>
         {
-            // The GetValue method seems to not be able to read an array of any type from a JSON file! Hence the detour via a comma-separated string + Split.
+            // The GetValue method seems to NOT be able to read an array of any type from a JSON file! Hence the detour via a comma-separated string + Split.
             var finYearsArgRaw = configuration.GetValue<string>("finYearsArg") ?? throw new NullReferenceException(); 
             var finYearsArg = finYearsArgRaw.Split(',').Select(short.Parse).ToArray(); // Select(short.Parse) here is a so-called 'method group' and equivalent to 'Select(s => short.Parse(s))'. 
             
             return new AllFinYears(finYearsArg); 
         });
+
+        services.AddSingleton<TestUsingDi>(); // Remove again when I'm done testing D.I. framework
 
         services.AddScoped<App>();
     }

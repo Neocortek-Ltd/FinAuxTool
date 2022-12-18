@@ -2,10 +2,10 @@ namespace FinAuxToolTests;
 using FinAuxTool.Core.Model;
 
 [TestClass]
-public class FinYearUKtest
+public class FinYearUKTests
 {
     [TestMethod]
-    public void FinYearUKconstructorTestvalidYear()
+    public void FinYearUKConstructorTestValidYear()
     {
         //Arrange
         var expectedPeriods = new Dictionary<short, short[]>()
@@ -19,7 +19,7 @@ public class FinYearUKtest
         //Act
         FinYearUK finYearUK = new FinYearUK(2022);;
         var actualPeriods = finYearUK.Quarters
-            .ToDictionary(quarter => quarter.PerVal, quarter => quarter.Months.Select(month => month.PerVal)
+            .ToDictionary(quarter => quarter.QuarterInCalYear, quarter => quarter.Months.Select(month => month.MonthInCalYear)
             .ToArray());
 
         // Assert that Quarters are correct
