@@ -1,6 +1,6 @@
 namespace FinAuxTool.Core.Model;
 
-public class FinYearUK : Year, IPeriod
+public class FinYearUK : Year, IPeriod, IFinYearUK
 {
     private const byte QuartersInYear = 4;
     public new short PerVal { get; }

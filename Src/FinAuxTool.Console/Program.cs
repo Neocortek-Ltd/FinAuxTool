@@ -1,15 +1,22 @@
-﻿namespace FinAuxTool.Console;
+﻿using System.Runtime.CompilerServices;
+
+namespace FinAuxTool.Console;
 using System;
-using FinAuxTool.Core.Model;
+using Core.Model;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
-public static class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        // Console.WriteLine("Enter yyyy-Qx to create folder structure:");
-        // var yQ = Console.ReadLine();
-        FinYearUK cY = new FinYearUK(2022);
-        Console.ReadLine();
-
+        var host = Host.CreateDefaultBuilder(args).ConfigureServices(ConfigureServices).Build();
+        host.Services.GetRequiredService<App>().Run();
+    }
+    
+    private static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services)
+    {
+        services.AddSingleton<IFinYearUK, FinYearUK>(sp => new FinYearUK(2022));
+        services.AddScoped<App>();
     }
 }
