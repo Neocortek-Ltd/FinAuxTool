@@ -4,20 +4,21 @@ namespace FinAuxTool.Core.Model;
 
 public class FinYearUK
 {
-    private const byte QuartersInYear = 4;
+    private const int QuartersInYear = 4;
 
-    public short StartYear { get; }
+    public int StartYear { get; }
     public Period Period { get; }
     public  Quarter[] Quarters { get; }
  
-    public FinYearUK(short aYear)
+    public FinYearUK(int aYear)
     {
         Trace.Assert(aYear is >= 2000 and <= 2100);
         StartYear = aYear;
 
         Period = new Period
         {
-            Label = StartYear.ToString() + "/" + (StartYear + 1).ToString() + "-fUK", // suffix "fUK" for Financial Year in UK
+            Label = $"{StartYear}/{StartYear + 1}-fUK", // suffix "fUK" for Financial Year in UK
+
             BegDate = new DateOnly(StartYear, 4, 1),
             EndDate = new DateOnly(StartYear + 1, 3, 31),
         };
@@ -27,7 +28,7 @@ public class FinYearUK
             .ToArray();
     }
 
-    private static short MapCalQtoFinQ(int aCalQ)
+    private static int MapCalQtoFinQ(int aCalQ)
     {
         return aCalQ switch
         {

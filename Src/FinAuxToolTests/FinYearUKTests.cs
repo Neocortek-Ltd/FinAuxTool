@@ -8,12 +8,12 @@ public class FinYearUKTests
     public void FinYearUKConstructorTestValidYear()
     {
         //Arrange
-        var expectedPeriods = new Dictionary<short, short[]>()
+        var expectedPeriods = new Dictionary<int, int[]>()
         {
-            {2, new short[]{4, 5, 6}},
-            {3, new short[]{7, 8, 9}},
-            {4, new short[]{10, 11, 12}},
-            {1, new short[]{1, 2, 3}},
+            {2, new int[]{4, 5, 6}},
+            {3, new int[]{7, 8, 9}},
+            {4, new int[]{10, 11, 12}},
+            {1, new int[]{1, 2, 3}},
         };
 
         //Act

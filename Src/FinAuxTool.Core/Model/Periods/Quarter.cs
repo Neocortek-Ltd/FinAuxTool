@@ -7,12 +7,12 @@ public class Quarter
 {
     private const byte MonthsInQuarter = 3;
     
-    public short QuarterInCalYear { get; }
+    public int QuarterInCalYear { get; }
     public Period Period { get; }
     public FinYearUK FinYearUk { get; }
     public Month[] Months { get; }
 
-    internal Quarter(FinYearUK aFinYearUk, short aQuarter)
+    internal Quarter(FinYearUK aFinYearUk, int aQuarter)
     {
         Trace.Assert(aQuarter is >= 1 and <= 4);
         QuarterInCalYear = aQuarter;
@@ -29,7 +29,7 @@ public class Quarter
         
         var firstMonthOfQuarter = 1 + (QuarterInCalYear - 1) * MonthsInQuarter;
         Months = Enumerable.Range(0, MonthsInQuarter)
-            .Select(i => new Month(this, (short)(firstMonthOfQuarter + i)))
+            .Select(i => new Month(this, (firstMonthOfQuarter + i)))
             .ToArray();
     }
 }    

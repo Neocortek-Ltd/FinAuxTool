@@ -32,7 +32,7 @@ internal static class Program
         {
             // The GetValue method seems to NOT be able to read an array of any type from a JSON file! Hence the detour via a comma-separated string + Split.
             var finYearsArgRaw = configuration.GetValue<string>("finYearsArg") ?? throw new NullReferenceException(); 
-            var finYearsArg = finYearsArgRaw.Split(',').Select(short.Parse).ToArray(); // Select(short.Parse) here is a so-called 'method group' and equivalent to 'Select(s => short.Parse(s))'. 
+            var finYearsArg = finYearsArgRaw.Split(',').Select(int.Parse).ToArray(); // Select(int.Parse) here is a so-called 'method group' and equivalent to 'Select(s => int.Parse(s))'. 
             
             return new AllFinYears(finYearsArg); 
         });

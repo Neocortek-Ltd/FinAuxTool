@@ -4,11 +4,11 @@ namespace FinAuxTool.Core.Model;
 
 public class Month
 {
-    public short MonthInCalYear { get; }
+    public int MonthInCalYear { get; }
     public Period Period { get; }
     public Quarter Quarter { get; }
 
-    internal Month(Quarter parentQuarter, short aMonth)
+    internal Month(Quarter parentQuarter, int aMonth)
     {
         Trace.Assert(aMonth is >= 1 and <= 12);
         MonthInCalYear = aMonth;
