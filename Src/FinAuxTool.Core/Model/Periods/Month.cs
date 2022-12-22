@@ -17,7 +17,7 @@ public class Month
 
         Period = new Period
         {
-            Label = y.ToString() + "-" + $"{aMonth:D2}",
+            Label =  $"{y.ToString()}-{aMonth:D2}",
             BegDate = new DateOnly(y, MonthInCalYear, 1),
             EndDate = new DateOnly(y, MonthInCalYear, DateTime.DaysInMonth(y, MonthInCalYear)),
         };

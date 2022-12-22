@@ -22,7 +22,7 @@ public class Quarter
         var endMonth = begMonth + 2;
         Period = new Period
         {
-            Label = FinYearUk.StartYear.ToString() + "-Q" + aQuarter.ToString(),
+            Label = $"{FinYearUk.StartYear.ToString()}-Q{aQuarter.ToString()}",
             BegDate = new DateOnly(FinYearUk.StartYear, begMonth,  1),
             EndDate = new DateOnly(FinYearUk.StartYear, endMonth, DateTime.DaysInMonth(FinYearUk.StartYear, endMonth)),
         };
