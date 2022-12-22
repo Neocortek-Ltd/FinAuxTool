@@ -1,4 +1,4 @@
-namespace FinAuxToolTests;
+namespace FinAuxTool.Tests;
 using FinAuxTool.Core.Model;
 
 [TestClass]
