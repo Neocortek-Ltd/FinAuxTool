@@ -10,13 +10,13 @@ internal static class Program
 {
     public static void Main(string[] args)
     {
-        IConfigurationBuilder builder = new ConfigurationBuilder()
+        var builder = new ConfigurationBuilder()
             .AddJsonFile(Path.GetFullPath("../../../appsettings.json"))
             .AddEnvironmentVariables();
         
-        IConfigurationRoot configuration = builder.Build();
+        var configuration = builder.Build();
         
-        IHost host = Host.CreateDefaultBuilder(args).
+        var host = Host.CreateDefaultBuilder(args).
             ConfigureServices((hostContext, services) =>
             {
                 ConfigureServices(hostContext, services, configuration);
@@ -31,10 +31,10 @@ internal static class Program
         services.AddSingleton<AllFinYears>(_ =>
         {
             // The GetValue method seems to NOT be able to read an array of any type from a JSON file! Hence the detour via a comma-separated string + Split.
-            string finYearsArgRaw = configuration.GetValue<string>("finYearsArg") ?? throw new NullReferenceException(); 
-            int[] finYearsArg = finYearsArgRaw.Split(',').Select(int.Parse).ToArray(); // Select(int.Parse) here is a so-called 'method group' and equivalent to 'Select(s => int.Parse(s))'. 
+            var finYearsRaw = configuration.GetValue<string>("finYearsArg") ?? throw new NullReferenceException(); 
+            var finYears = finYearsRaw.Split(',').Select(int.Parse).ToArray(); // Select(int.Parse) here is a so-called 'method group' and equivalent to 'Select(s => int.Parse(s))'. 
             
-            return new AllFinYears(finYearsArg); 
+            return new AllFinYears(finYears); 
         });
 
         services.AddSingleton<TestUsingDi>(); // Remove again when I'm done testing D.I. framework

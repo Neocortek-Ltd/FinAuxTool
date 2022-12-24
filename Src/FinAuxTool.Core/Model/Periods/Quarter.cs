@@ -18,8 +18,8 @@ public class Quarter
         QuarterInCalYear = aQuarter;
         FinYearUk = aFinYearUk;
         
-        int begMonth = 1 + (QuarterInCalYear -1) * 3;
-        int endMonth = begMonth + 2;
+        var begMonth = 1 + (QuarterInCalYear -1) * 3;
+        var endMonth = begMonth + 2;
         Period = new Period
         {
             Label = $"{FinYearUk.StartYear.ToString()}-Q{aQuarter.ToString()}",
@@ -27,7 +27,7 @@ public class Quarter
             EndDate = new DateOnly(FinYearUk.StartYear, endMonth, DateTime.DaysInMonth(FinYearUk.StartYear, endMonth)),
         };
         
-        int firstMonthOfQuarter = 1 + (QuarterInCalYear - 1) * MonthsInQuarter;
+        var firstMonthOfQuarter = 1 + (QuarterInCalYear - 1) * MonthsInQuarter;
         Months = Enumerable.Range(0, MonthsInQuarter)
             .Select(i => new Month(this, (firstMonthOfQuarter + i)))
             .ToArray();

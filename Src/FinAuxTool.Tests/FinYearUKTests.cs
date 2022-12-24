@@ -17,8 +17,8 @@ public class FinYearUKTests
         };
 
         //Act
-        FinYearUK finYearUK = new FinYearUK(2022);;
-        Dictionary<int, int[]> actualPeriods = finYearUK.Quarters
+        var finYearUK = new FinYearUK(2022);;
+        var actualPeriods = finYearUK.Quarters
             .ToDictionary(quarter => quarter.QuarterInCalYear, quarter => quarter.Months.Select(month => month.MonthInCalYear)
             .ToArray());
 
@@ -26,7 +26,7 @@ public class FinYearUKTests
         CollectionAssert.AreEqual(expectedPeriods.Keys, actualPeriods.Keys);
         
         // Assert that Months in each Quarter are correct
-        foreach (int quarter in actualPeriods.Keys)
+        foreach (var quarter in actualPeriods.Keys)
         {
             CollectionAssert.AreEqual(expectedPeriods[quarter],actualPeriods[quarter]);
         }
