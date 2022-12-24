@@ -13,7 +13,7 @@ public class Month
         Trace.Assert(aMonth is >= 1 and <= 12);
         MonthInCalYear = aMonth;
         Quarter = parentQuarter;
-        var y = Quarter.FinYearUk.StartYear;
+        int y = Quarter.FinYearUk.StartYear;
 
         Period = new Period
         {

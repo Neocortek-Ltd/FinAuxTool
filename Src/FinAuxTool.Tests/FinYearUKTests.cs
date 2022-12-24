@@ -8,7 +8,7 @@ public class FinYearUKTests
     public void FinYearUKConstructorTestValidYear()
     {
         //Arrange
-        var expectedPeriods = new Dictionary<int, int[]>()
+        Dictionary<int, int[]> expectedPeriods = new ()
         {
             {2, new int[]{4, 5, 6}},
             {3, new int[]{7, 8, 9}},
@@ -18,7 +18,7 @@ public class FinYearUKTests
 
         //Act
         FinYearUK finYearUK = new FinYearUK(2022);;
-        var actualPeriods = finYearUK.Quarters
+        Dictionary<int, int[]> actualPeriods = finYearUK.Quarters
             .ToDictionary(quarter => quarter.QuarterInCalYear, quarter => quarter.Months.Select(month => month.MonthInCalYear)
             .ToArray());
 
@@ -26,7 +26,7 @@ public class FinYearUKTests
         CollectionAssert.AreEqual(expectedPeriods.Keys, actualPeriods.Keys);
         
         // Assert that Months in each Quarter are correct
-        foreach (var quarter in actualPeriods.Keys)
+        foreach (int quarter in actualPeriods.Keys)
         {
             CollectionAssert.AreEqual(expectedPeriods[quarter],actualPeriods[quarter]);
         }

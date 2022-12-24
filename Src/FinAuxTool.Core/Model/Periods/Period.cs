@@ -1,8 +1,8 @@
 namespace FinAuxTool.Core.Model;
 
-public class Period
+public record Period
 {
-    public string Label { get; init; }
-    public DateOnly BegDate { get; init; }
-    public DateOnly EndDate { get; init; }
+    internal string Label { get; init; }
+    internal DateOnly BegDate { get; init; }
+    internal DateOnly EndDate { get; init; }
 }
